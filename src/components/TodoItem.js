@@ -2,10 +2,17 @@ import React, { Component } from "react";
 
 class TodoItem extends Component {
   render() {
-    const { title, handleDelete, handleEdit } = this.props;
+    const { title, money, handleDelete, handleEdit } = this.props;
     return (
       <li className="list-group-item text-capitalize d-flex justify-content-between my-2">
-        <h6>{title}</h6>
+        <h6>
+          {title}{" "}
+          <span className="text-danger ml-1 ">
+            {" "}
+            RM {parseFloat(money).toFixed(2)}
+          </span>
+        </h6>
+
         <div className="todo-icon">
           <span className="mx-2 text-success" onClick={handleEdit}>
             <i className="fas fa-pen" />

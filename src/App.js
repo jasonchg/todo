@@ -13,31 +13,41 @@ class App extends Component {
     items: [],
     id: uuid(),
     item: "",
+    money: "",
     editItem: false
   };
 
-  handleChange = e => {
+  handleChangeItem = e => {
     this.setState({
       item: e.target.value
     });
   };
+
+  handleChangeMoney = e => {
+    this.setState({
+      money: e.target.value
+    });
+  };
+
   handleSubmit = e => {
-    const { id, item, items } = this.state;
+    const { id, item, items, money } = this.state;
 
     e.preventDefault();
 
     const newItem = {
       id,
-      title: item
+      title: item,
+      money
     };
 
-    // console.log(newItem);
+    console.log(newItem);
 
     const updatedItems = [...items, newItem];
 
     this.setState({
       items: updatedItems,
       item: "",
+      money: "",
       id: uuid(),
       editItem: false
     });
@@ -70,21 +80,24 @@ class App extends Component {
       id,
       items: filteredItems,
       item: selectedItem.title,
+      money: selectedItem.money,
       editItem: true
     });
   };
 
   render() {
-    const { item, items, editItem } = this.state;
+    const { item, money, items, editItem } = this.state;
     return (
       <div className="container">
         <div className="row">
           <div className="col-10 mx-auto col-md-8 mt-4">
-            <h3 className="text-capitalize text-center">Todo Input</h3>
+            <h3 className="text-capitalize">Please Specify.</h3>
 
             <TodoInput
               item={item}
-              handleChange={this.handleChange}
+              money={money}
+              handleChangeItem={this.handleChangeItem}
+              handleChangeMoney={this.handleChangeMoney}
               handleSubmit={this.handleSubmit}
               editItem={editItem}
             />
